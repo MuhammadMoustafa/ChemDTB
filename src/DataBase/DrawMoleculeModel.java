@@ -34,8 +34,8 @@ public class DrawMoleculeModel extends Model{
 		String structure ;
 		
 			try {
-				Class.forName(JDBC_DRIVER);
-				conn = DriverManager.getConnection(serverURL, userName, password);
+				//Class.forName(JDBC_DRIVER);
+				conn = DriverManager.getConnection(URL);
 				Statement st = conn.createStatement();
 				ResultSet rs = st.executeQuery("SELECT cd_structure "
 							+ " FROM chems"

@@ -31,8 +31,8 @@ public class FragmentModel extends Model {
 		try {
      	Connection conn = null;
 		
-		Class.forName(JDBC_DRIVER);
-		conn = DriverManager.getConnection(serverURL, userName, password);
+		//Class.forName(JDBC_DRIVER);
+		conn = DriverManager.getConnection(URL);
 
 		Statement st = conn.createStatement();
 		ResultSet rs = st.executeQuery("SELECT cd_id,cd_structure,cd_formula"
@@ -66,9 +66,9 @@ public class FragmentModel extends Model {
 			FileUploaded message = new FileUploaded();
 			message.noOfAddedRecords.setText("Can't connect to database");
 			message.setVisible(true);
-		} catch (ClassNotFoundException e) {
+		} //catch (ClassNotFoundException e) {
 
-		}
+		//}
 		
 		
 	}

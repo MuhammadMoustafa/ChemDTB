@@ -35,11 +35,23 @@ public class FillTableModel extends Model{
 		
 		Connection conn = null;
 		try{
-			
-			Class.forName(JDBC_DRIVER);
-			conn = DriverManager.getConnection(serverURL, userName, password);
+	        String sql = "CREATE TABLE IF NOT EXISTS " + tablename + " (cd_id INTEGER PRIMARY KEY,\n"
+	        		+ "cd_formula TEXT,\n"
+	        		+ "cd_molweight REAL,\n"
+	        		+ "cd_structure BLOB,\n"
+	        		+ "cd_smiles TEXT\n"
+	        		+ ");";
+	        
+			//Class.forName(JDBC_DRIVER);
+			conn = DriverManager.getConnection(URL);
 
+			Statement stmt = conn.createStatement();
+			stmt.execute(sql);
+			
+			
 			Statement st = conn.createStatement();
+			
+			
 			ResultSet rs = st.executeQuery("SELECT cd_id,cd_formula,cd_molweight,cd_structure, cd_smiles "
 					+ " FROM chems;");
 			while (rs.next()){
@@ -73,8 +85,8 @@ public class FillTableModel extends Model{
 				FillRow(row);
   		  	}
 
-		}catch (ClassNotFoundException e) {
-  			  
+		}catch (SQLException e) {
+			e.printStackTrace();
   		  }
 
 

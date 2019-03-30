@@ -21,8 +21,8 @@ public class ExportModel extends Model{
 		String result = "";
 		
 			try {
-				Class.forName(JDBC_DRIVER);
-				conn = DriverManager.getConnection(serverURL, userName, password);
+				//Class.forName(JDBC_DRIVER);
+				conn = DriverManager.getConnection(URL);
 				Statement st = conn.createStatement();
 				for (int i = 0; i < cd_id.length; i++) {
 					ResultSet rs = st.executeQuery("SELECT cd_structure "
@@ -37,8 +37,8 @@ public class ExportModel extends Model{
 				}
 				WriteToFile(result);
 				return true;
-			} catch (ClassNotFoundException e) {
-				return false;
+			//} catch (ClassNotFoundException e) {
+				//return false;
 			} catch (SQLException e) {
 				return false;
 			}

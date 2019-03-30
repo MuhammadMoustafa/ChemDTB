@@ -9,12 +9,12 @@ public class Main {
 		View view = new View();
 
 		try {
-			Model.getParams("Params.json");
+			//Model.getParams("Params.json");
 			ImportModel model = new ImportModel();
 			Controller.set(view, model);
 			MainController controller = new MainController();
 
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {//FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		

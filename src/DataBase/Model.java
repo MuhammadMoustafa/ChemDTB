@@ -10,23 +10,23 @@ import javax.swing.table.DefaultTableModel;
 import org.json.JSONObject;
 
 public class Model {
-	static String serverURL;
-	static String userName;
-	static String password;
-	static String tablename;
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	static final String fileName = "db.db";
+	static final String URL = "jdbc:sqlite:" + fileName;
+	static final String tablename = "chems";
+	//static String tablename;
+	//static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	
 	static void getParams(String filename) throws FileNotFoundException{
 		
-		Scanner jsonScanner = new Scanner(new File(filename));
-		String myJson = jsonScanner.useDelimiter("\\Z").next();		
-		JSONObject obj = new JSONObject(myJson);
-		serverURL = obj.getJSONObject("Params").getString("server");
-		userName = obj.getJSONObject("Params").getString("userName");
-		password = obj.getJSONObject("Params").getString("password");
-		tablename = obj.getJSONObject("Params").getString("TableName");
+		//Scanner jsonScanner = new Scanner(new File(filename));
+		//String myJson = jsonScanner.useDelimiter("\\Z").next();		
+		//JSONObject obj = new JSONObject(myJson);
+		//serverURL = obj.getJSONObject("Params").getString("server");
+		//userName = obj.getJSONObject("Params").getString("userName");
+		//password = obj.getJSONObject("Params").getString("password");
+		//tablename = obj.getJSONObject("Params").getString("TableName");
 		
-		jsonScanner.close();
+		//jsonScanner.close();
 		}
 	static void EmptyTable(JTable table) {
 		DefaultTableModel tableModel = (DefaultTableModel)table.getModel();

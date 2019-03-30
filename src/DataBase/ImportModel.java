@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -73,15 +74,17 @@ public class ImportModel extends Model{
 	 }
 	private  boolean insertToDatabase(ArrayList<String> params,Double molWeight) throws CDKException, IOException{
 		try {
-			java.sql.Connection conn = DriverManager.getConnection(serverURL, userName, password);
+			java.sql.Connection conn = DriverManager.getConnection(URL);
 			Statement st = conn.createStatement();
 			
 			String query = " SELECT *"
-						 + " FROM "+tablename
-						 + " WHERE cd_id = "+params.get(0)+" ;";
-			
+					 + " FROM "+tablename
+					 + " WHERE cd_id = "+params.get(0)+" ;";
+		
 			ResultSet rs = st.executeQuery(query); //check if the record is already in the database
-			rs.last();
+			
+			while(rs.next()) {}
+
 			if(rs.getRow() == 0) {
 				query = "INSERT INTO "+ tablename+ " (cd_id, cd_structure, cd_smiles, cd_formula,cd_molweight)"
 						+"VALUES (\""+ params.get(0)+"\" , \""+ params.get(1) + "\" , \" "
@@ -91,6 +94,7 @@ public class ImportModel extends Model{
 			}
 			  return false;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
 
